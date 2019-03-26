@@ -1,0 +1,25 @@
+{
+  "name": "oza/database",
+  "description": "A Database Wrapper to deal with your data",
+  "type": "library",
+  "require": {
+    "php": "^7.1"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "oza",
+      "email": "abouba181@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "OZA\\Database\\": "src/",
+      "OZA\\Database\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1@dev"
+  }
+}
