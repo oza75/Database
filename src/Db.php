@@ -61,10 +61,9 @@ class Db
      * @return Db
      * @throws \Exception
      */
-    public static function fromConfig(?string $file = 'config.php')
+    public static function fromConfig()
     {
-        $filename = dirname(__FILE__) . '/' . $file;
-        $config = include($filename);
+        $config = Config::get('db');
         $keys = array_keys($config);
         $requiredKeys = ['driver', 'host', 'name', 'username', 'password'];
 
@@ -112,6 +111,9 @@ class Db
         return $this->pdo;
     }
 
+    /**
+     * Drop all tables in db
+     */
     public function dropAllTables()
     {
         $this->getPdo()->query('SET FOREIGN_KEY_CHECKS = 0;');

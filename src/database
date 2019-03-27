@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+use OZA\Database\Console\Cli;
+
+// Require composer autoloader to autoload classes
+require __DIR__ . '/../vendor/autoload.php';
+
+// creating new instance of cli
+$cli = new Cli($argv, $argc);
+
+// Then process
+$cli->process();

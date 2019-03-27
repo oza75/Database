@@ -9,54 +9,36 @@
 namespace OZA\Database\Migrations;
 
 
+use OZA\Database\Migrations\Compiler\ColumnCompiler;
+use OZA\Database\Migrations\Traits\ColumnDefinition;
+
 class Column
 {
+    use ColumnDefinition;
+
     /**
      * @var string
      */
     private $name;
-    /**
-     * @var string
-     */
-    protected $default;
-    /**
-     * @var bool
-     */
-    protected $nullable;
 
-    protected $type;
+    protected $type = ['type' => null];
+    /**
+     * @var Table
+     */
+    protected $table;
+
 
     /**
      * Column constructor.
      * @param string $name
+     * @param Table $table
      */
-    public function __construct(string $name)
+    public function __construct(string $name, Table $table)
     {
         $this->name = $name;
+        $this->table = $table;
     }
 
-    /**
-     * Set default value for a column
-     *
-     * @param $default
-     * @return $this
-     */
-    public function default($default)
-    {
-        $this->default = $default;
-        return $this;
-    }
-
-    /**
-     * Set nullable value
-     *
-     * @return $this
-     */
-    public function nullable()
-    {
-        $this->nullable = true;
-        return $this;
-    }
 
     /**
      * @return string
@@ -71,19 +53,9 @@ class Column
      */
     public function toSql(): string
     {
-        $parts = [$this->name];
-        $parts[] = $this->getType();
+        $sql = ColumnCompiler::compile($this);
 
-        if (!is_null($this->default)) {
-            $parts[] = 'DEFAULT ' . (is_numeric($this->default) ? $this->default : "'$this->default'");
-        }
-
-        if ($this->nullable) {
-            $parts[] = 'NULL';
-        } else {
-            $parts[] = 'NOT NULL';
-        }
-        return join(' ', $parts);
+        return $sql;
     }
 
     /**
@@ -97,14 +69,29 @@ class Column
         return $this;
     }
 
+
+    /**
+     * @return array
+     */
+    public function getType(): array
+    {
+        return $this->type;
+    }
+
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getName(): string
     {
-        $type = $this->type['type'];
-        if (isset($this->type['length']) && !is_null($this->type['length'])) $type .= "({$this->type['length']})";
-
-        return $type;
+        return $this->name;
     }
+
+    /**
+     * @return Table
+     */
+    public function getTable(): Table
+    {
+        return $this->table;
+    }
+
 }
