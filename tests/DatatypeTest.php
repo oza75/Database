@@ -9,13 +9,14 @@
 namespace OZA\Database\Tests;
 
 
+use Exception;
 use OZA\Database\Migrations\Table;
 
 class DatatypeTest extends TestCase
 {
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_string_column()
     {

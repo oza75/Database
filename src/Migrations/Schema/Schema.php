@@ -4,6 +4,7 @@
 namespace OZA\Database\Migrations\Schema;
 
 
+use Exception;
 use OZA\Database\Db;
 use OZA\Database\Migrations\Table;
 
@@ -30,7 +31,7 @@ class Schema
 
     /**
      * Schema constructor.
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct()
     {
@@ -41,12 +42,12 @@ class Schema
      * Set schema command
      *
      * @param string $command
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setCommand(string $command)
     {
         if (!in_array(strtolower($command), $this->availableCommands))
-            throw new \Exception('Command not available');
+            throw new Exception('Command not available');
 
         $this->command = $command;
     }
@@ -55,11 +56,11 @@ class Schema
      *
      * @param Table $table
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     protected function execute(Table $table)
     {
-        if (is_null($this->command)) throw new \Exception('Command is not already set');
+        if (is_null($this->command)) throw new Exception('Command is not already set');
         return $table->setCommand($this->command)->exec();
     }
 

@@ -9,6 +9,7 @@
 namespace OZA\Database\Console\Commands;
 
 
+use Exception;
 use OZA\Database\Config;
 use OZA\Database\Console\Commands\Traits\StubCapacity;
 use OZA\Database\Helpers\Str;
@@ -69,12 +70,12 @@ class MigrationCommand extends BaseCommand
      * Get table name
      *
      * @return string|string[]|null
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getTableName()
     {
         $table = $this->option('table');
-        if (!$table) throw new \Exception('You must defined the name of table (e.g: --table=users)');
+        if (!$table) throw new Exception('You must defined the name of table (e.g: --table=users)');
 
         return Str::sanitize($table);
     }

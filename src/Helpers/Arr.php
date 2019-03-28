@@ -9,6 +9,8 @@
 namespace OZA\Database\Helpers;
 
 
+use ArrayAccess;
+
 class Arr
 {
 
@@ -19,10 +21,10 @@ class Arr
      *          Arr::get($a, 'database.name') will return 'root'
      *
      * @author OZA <abouba181@gmail.com>
-     * @param \ArrayAccess|array $data
+     * @param ArrayAccess|array $data
      * @param string $key
      * @param null $default
-     * @return \ArrayAccess|mixed|null
+     * @return ArrayAccess|mixed|null
      */
     public static function get($data, string $key, $default = null)
     {

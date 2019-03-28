@@ -9,6 +9,7 @@
 namespace OZA\Database\Console\Commands;
 
 
+use Exception;
 use OZA\Database\Console\Commands\Traits\MigrationTrait;
 use OZA\Database\Db;
 use OZA\Database\Helpers\Arr;
@@ -28,7 +29,7 @@ class MigrationRollbackCommand extends BaseCommand
     protected $databaseMigrations = [];
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function handle()
     {

@@ -9,6 +9,8 @@
 namespace OZA\Database\Exceptions\Column;
 
 
-class InvalidTypeForAutoIncrement extends \Exception
+use Exception;
+
+class InvalidTypeForAutoIncrement extends Exception
 {
 }

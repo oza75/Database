@@ -9,6 +9,9 @@
 namespace OZA\Database;
 
 
+use Exception;
+use PDO;
+
 class Db
 {
     /**
@@ -28,7 +31,7 @@ class Db
      */
     private $password;
     /**
-     * @var \PDO
+     * @var PDO
      */
     protected $pdo;
     /**
@@ -58,7 +61,7 @@ class Db
     /**
      * @param string|null $file
      * @return Db
-     * @throws \Exception
+     * @throws Exception
      */
     public static function fromConfig()
     {
@@ -68,7 +71,7 @@ class Db
 
         foreach ($requiredKeys as $key) {
             if (!in_array($key, $keys)) {
-                throw  new \Exception("Db Config must have theses keys : " . join(', ', $requiredKeys));
+                throw  new Exception("Db Config must have theses keys : " . join(', ', $requiredKeys));
             }
         }
 
@@ -87,7 +90,7 @@ class Db
     private final function initPdo()
     {
         $dsn = $this->driver . ":host=" . $this->host . ";dbname=" . $this->name;
-        $this->pdo = new \PDO($dsn, $this->username, $this->password, $this->getOptions());
+        $this->pdo = new PDO($dsn, $this->username, $this->password, $this->getOptions());
     }
 
     /**
@@ -96,16 +99,16 @@ class Db
     protected function getOptions()
     {
         return [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
         ];
     }
 
 
     /**
-     * @return \PDO
+     * @return PDO
      */
-    public function getPdo(): \PDO
+    public function getPdo(): PDO
     {
         return $this->pdo;
     }
@@ -117,7 +120,7 @@ class Db
     {
         $this->getPdo()->query('SET FOREIGN_KEY_CHECKS = 0;');
         if ($result = $this->getPdo()->query("SHOW TABLES")) {
-            $rows = $result->fetchAll(\PDO::FETCH_ASSOC);
+            $rows = $result->fetchAll(PDO::FETCH_ASSOC);
             foreach ($rows as $row) {
                 $name = array_values($row)[0];
                 $this->getPdo()->query('DROP TABLE IF EXISTS ' . $name);
@@ -139,7 +142,7 @@ class Db
         // Run it in try/catch in case PDO is in ERRMODE_EXCEPTION.
         try {
             $result = $this->getPdo()->query("SELECT 1 FROM $table LIMIT 1");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // We got an exception == table not found
             return FALSE;
         }

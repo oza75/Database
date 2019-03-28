@@ -9,6 +9,7 @@
 namespace OZA\Database\Tests;
 
 
+use Exception;
 use OZA\Database\Db;
 use OZA\Database\Migrations\Table;
 
@@ -26,7 +27,7 @@ class MigrationsTest extends DatabaseTestCase
 
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_create_string_columns()
     {
@@ -38,7 +39,7 @@ class MigrationsTest extends DatabaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_create_int_decimal_columns()
     {
@@ -51,7 +52,7 @@ class MigrationsTest extends DatabaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_migrate_table()
     {

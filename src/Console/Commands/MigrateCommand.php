@@ -8,6 +8,7 @@
 
 namespace OZA\Database\Console\Commands;
 
+use Exception;
 use OZA\Database\Console\Commands\Traits\MigrationTrait;
 use OZA\Database\Migrations\Schema\Schema;
 use OZA\Database\Migrations\Table;
@@ -23,7 +24,7 @@ class MigrateCommand extends BaseCommand
     protected $databaseMigrations = [];
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function handle()
     {

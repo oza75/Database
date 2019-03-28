@@ -8,10 +8,12 @@
 
 namespace OZA\Database\Migrations;
 
+use Exception;
 use OZA\Database\Db;
 use OZA\Database\Migrations\Compiler\TableCompiler;
 use OZA\Database\Migrations\Interfaces\DatatypeInterface;
 use OZA\Database\Migrations\Traits\DatatypeTrait;
+use PDOStatement;
 
 class Table implements DatatypeInterface
 {
@@ -67,7 +69,7 @@ class Table implements DatatypeInterface
         $this->name = $name;
         try {
             $this->db = Db::fromConfig();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
 
         }
     }
@@ -81,8 +83,8 @@ class Table implements DatatypeInterface
     }
 
     /**
-     * @return false|\PDOStatement
-     * @throws \Exception
+     * @return false|PDOStatement
+     * @throws Exception
      */
     public function migrate()
     {
@@ -91,14 +93,14 @@ class Table implements DatatypeInterface
 
     /**
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function exec()
     {
         try {
             $this->db->getPdo()->query($this->toSql());
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
@@ -238,7 +240,7 @@ class Table implements DatatypeInterface
      * Drop table if exists
      *
      * @param string $table
-     * @throws \Exception
+     * @throws Exception
      */
     public static function dropIfExists(string $table)
     {

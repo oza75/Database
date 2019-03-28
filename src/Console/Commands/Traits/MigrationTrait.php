@@ -9,12 +9,14 @@
 namespace OZA\Database\Console\Commands\Traits;
 
 
+use Exception;
 use OZA\Database\Config;
 use OZA\Database\Db;
 use OZA\Database\Helpers\Arr;
 use OZA\Database\Helpers\ClassesFinder;
 use OZA\Database\Migrations\MigrationTableMigration;
 use OZA\Database\Migrations\Table;
+use PDO;
 
 trait MigrationTrait
 {
@@ -38,7 +40,7 @@ trait MigrationTrait
     /**
      * Create migrations table if the table not exists in database
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function createMigrationsTableIfNotExists()
     {
@@ -53,19 +55,19 @@ trait MigrationTrait
     /**
      * Get all migrations in database
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getDatabaseMigrations()
     {
         $pdo = Db::fromConfig()->getPdo();
         $query = $pdo->query('SELECT * from ' . self::MIGRATION_TABLE_NAME . ' ORDER BY belongs desc;');
-        return $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
      * @param $file
      * @param int $belongs
-     * @throws \Exception
+     * @throws Exception
      */
     protected function addMigration($file, int $belongs)
     {
@@ -78,7 +80,7 @@ trait MigrationTrait
      * Remove Migration
      *
      * @param $filename
-     * @throws \Exception
+     * @throws Exception
      */
     protected function removeMigration($filename)
     {
