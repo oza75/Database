@@ -36,7 +36,7 @@ class MigrationCommand extends BaseCommand
         $filename = $this->getFilename();
 
         $this->createFile($filename, $data);
-        echo basename($filename, '.php') . " created\n.";
+        echo basename($filename, '.php') . " created.\n";
     }
 
     /**
@@ -86,9 +86,9 @@ class MigrationCommand extends BaseCommand
      */
     protected function getFilename()
     {
-        $name = $this->option('name', 'migration_without_name');
+        $name = $this->argument('name', 'migration_without_name');
         $name = Str::sanitize($name);
-        $name .= '_' . date('Y_m_d_h_i_s');
+        $name .= '_' . date('Y_m_d_H_i_s');
 
         return Config::get('db.migrations.folder', __DIR__ . '/') . $name . '.php';
     }

@@ -200,7 +200,7 @@ trait DatatypeTrait
      */
     public function timestamp(string $name): Column
     {
-        return $this->addColumn($name, 'TIMESTAMP');
+        return $this->addColumn($name, 'TIMESTAMP')->default('CURRENT_TIMESTAMP')->onUpdate('CURRENT_TIMESTAMP');
     }
 
     /**
@@ -232,7 +232,7 @@ trait DatatypeTrait
      */
     public function timestamps(): void
     {
-        $this->timestamp('created_ad');
+        $this->timestamp('created_at');
         $this->timestamp('updated_at');
     }
 

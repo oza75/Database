@@ -22,6 +22,9 @@ class ColumnCompiler extends SQLCompiler
      * @var string
      */
     protected $separator = " ";
+    protected $dontQuotesTypes = [
+        'TIMESTAMP', 'DATE', 'DATETIME'
+    ];
 
     /**
      * Compile Column to sql
@@ -40,6 +43,7 @@ class ColumnCompiler extends SQLCompiler
             ->compileUnsigned()
             ->compileDefault()
             ->compileNullable()
+            ->compileOnUpdate()
             ->compileAutoIncrement();
 
         return $compiler->handle();
@@ -77,12 +81,42 @@ class ColumnCompiler extends SQLCompiler
         $default = $this->column->getDefault();
 
         if (!is_null($default)) {
-            $sql = 'DEFAULT ' . (is_numeric($default) ? $default : "'$default'");
+            $sql = 'DEFAULT ' . $this->parseDefault($default);
             $this->addPart($sql);
         }
 
         return $this;
 
+    }
+
+    /**
+     * Compile on update expression
+     *
+     * @return $this
+     */
+    private function compileOnUpdate()
+    {
+        $onUpdate = $this->column->getOnUpdate();
+        if (strlen(trim($onUpdate))) {
+            $sql = 'ON UPDATE ' . $onUpdate;
+            $this->addPart($sql);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Parse default value
+     *
+     * @param $default
+     * @return string
+     */
+    protected function parseDefault($default)
+    {
+        $type = strtoupper($this->column->getType()['type']);
+        if (in_array($type, $this->dontQuotesTypes) || is_numeric($default)) return $default;
+
+        return "'$default'";
     }
 
     /**

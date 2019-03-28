@@ -4,7 +4,7 @@ use OZA\Database\Migrations\Interfaces\MigrationTableInterface;
 use OZA\Database\Migrations\Schema\Schema;
 use OZA\Database\Migrations\Table;
 
-class tableNameFormatted implements MigrationTableInterface
+class CreateUsersMigration implements MigrationTableInterface
 {
 
     /**
@@ -15,10 +15,11 @@ class tableNameFormatted implements MigrationTableInterface
      */
     public function up(Schema $schema): void
     {
-        $schema->create('tableName', function (Table $table) {
+        $schema->create('users', function (Table $table) {
 
             $table->integer('id')->autoIncrement()->index();
-
+            $table->string('name')->index();
+            $table->string('email')->index();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class tableNameFormatted implements MigrationTableInterface
      */
     public function down(Schema $schema): void
     {
-        $schema->drop('tableName');
+        $schema->drop('users');
     }
 }

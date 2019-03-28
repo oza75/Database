@@ -29,6 +29,7 @@ class Str
      *
      * @output = 'text_case' => TextCase
      *
+     * @author OZA <abouba181@gmail.com>, ig: @mr_oza.dev
      * @param string $string
      * @return string
      */

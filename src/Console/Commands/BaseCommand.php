@@ -9,6 +9,9 @@
 namespace OZA\Database\Console\Commands;
 
 
+use OZA\Database\Console\Commands\Traits\HasInput;
+use OZA\Database\Console\Commands\Traits\HasSignature;
+
 class BaseCommand
 {
     use HasSignature, HasInput;

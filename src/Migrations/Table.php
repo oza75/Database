@@ -21,7 +21,10 @@ class Table implements DatatypeInterface
      * @var string
      */
     private $name;
-
+    /**
+     * @var string
+     */
+    protected $command;
     /**
      * List of all columns
      *
@@ -78,11 +81,26 @@ class Table implements DatatypeInterface
     }
 
     /**
-     * @return int
+     * @return false|\PDOStatement
+     * @throws \Exception
      */
     public function migrate()
     {
-        return $this->db->getPdo()->exec($this->toSql());
+        return $this->exec();
+    }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function exec()
+    {
+        try {
+            $this->db->getPdo()->query($this->toSql());
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
@@ -144,6 +162,24 @@ class Table implements DatatypeInterface
     }
 
     /**
+     * @param string $command
+     * @return Table
+     */
+    public function setCommand(string $command): Table
+    {
+        $this->command = $command;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
+    /**
      * Add column to table
      *
      * @param string $name
@@ -185,6 +221,12 @@ class Table implements DatatypeInterface
         return $this;
     }
 
+    /**
+     * Add unique key to table
+     *
+     * @param string $name
+     * @return $this
+     */
     public function addUniqueKey(string $name)
     {
         $this->uniques[] = $name;
@@ -192,4 +234,18 @@ class Table implements DatatypeInterface
         return $this;
     }
 
+    /**
+     * Drop table if exists
+     *
+     * @param string $table
+     * @throws \Exception
+     */
+    public static function dropIfExists(string $table)
+    {
+        if (!Db::fromConfig()->tableExists($table)) return;
+
+        $pdo = Db::fromConfig()->getPdo();
+        $pdo->query(sprintf("DROP TABLE %s", $table));
+
+    }
 }

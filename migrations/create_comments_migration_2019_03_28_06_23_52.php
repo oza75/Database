@@ -4,7 +4,7 @@ use OZA\Database\Migrations\Interfaces\MigrationTableInterface;
 use OZA\Database\Migrations\Schema\Schema;
 use OZA\Database\Migrations\Table;
 
-class tableNameFormatted implements MigrationTableInterface
+class CreateCommentsMigration implements MigrationTableInterface
 {
 
     /**
@@ -15,7 +15,7 @@ class tableNameFormatted implements MigrationTableInterface
      */
     public function up(Schema $schema): void
     {
-        $schema->create('tableName', function (Table $table) {
+        $schema->create('comments', function (Table $table) {
 
             $table->integer('id')->autoIncrement()->index();
 
@@ -31,6 +31,6 @@ class tableNameFormatted implements MigrationTableInterface
      */
     public function down(Schema $schema): void
     {
-        $schema->drop('tableName');
+        $schema->drop('comments');
     }
 }

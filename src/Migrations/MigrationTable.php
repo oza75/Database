@@ -11,10 +11,7 @@ namespace OZA\Database\Migrations;
 
 class MigrationTable
 {
-
-
-    public function process()
+    public function migrate()
     {
-
     }
 }

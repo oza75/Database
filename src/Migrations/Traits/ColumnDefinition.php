@@ -30,6 +30,13 @@ trait ColumnDefinition
 
     protected $unsigned = false;
 
+    /**
+     * On update expression
+     *
+     * @var string
+     */
+    protected $update = '';
+
     private $integerTypes = [
         'INT', 'BIGINT', 'TINYINT'
     ];
@@ -97,6 +104,18 @@ trait ColumnDefinition
     }
 
     /**
+     * Add onUpdate expression
+     *
+     * @param string $expression
+     * @return $this
+     */
+    public function onUpdate(string $expression)
+    {
+        $this->update = $expression;
+        return $this;
+    }
+
+    /**
      * @return Column
      */
     public function autoIncrement(): self
@@ -106,6 +125,7 @@ trait ColumnDefinition
 //            throw new InvalidTypeForAutoIncrement('Only column that has type ' . join(' or ', $this->integerTypes) . ' can be autoIncremented');
         }
 
+        $this->primary();
         $this->autoIncrement = true;
         return $this;
     }
@@ -156,5 +176,13 @@ trait ColumnDefinition
     public function isUnsigned(): bool
     {
         return $this->unsigned;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOnUpdate(): string
+    {
+        return $this->update;
     }
 }

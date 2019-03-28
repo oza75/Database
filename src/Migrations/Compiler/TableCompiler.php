@@ -24,6 +24,11 @@ class TableCompiler extends SQLCompiler
     protected $table;
 
     /**
+     * @var string
+     */
+    protected $command;
+
+    /**
      * @param Table $table
      * @return string
      */
@@ -32,15 +37,19 @@ class TableCompiler extends SQLCompiler
         $compiler = new self();
         $compiler->table = $table;
 
-        return $compiler
+        $compiler
             ->compileCommand()
-            ->compileName()
-            ->addPart('(')
-            ->compileColumns()
-            ->compileConstraints()
-            ->addPart(');')
-            ->compileIndexes()
-            ->handle();
+            ->compileName();
+
+        if (!empty($table->getColumns())) {
+            $compiler->addPart('(')
+                ->compileColumns()
+                ->compileConstraints()
+                ->addPart(');')
+                ->compileIndexes();
+        }
+
+        return $compiler->handle();
     }
 
     /**
@@ -50,7 +59,9 @@ class TableCompiler extends SQLCompiler
      */
     private function compileCommand(): self
     {
-        return $this->addPart('CREATE TABLE');
+        return $this
+            ->addPart(strtoupper($this->table->getCommand()))
+            ->addPart('TABLE');
     }
 
     /**
@@ -136,6 +147,16 @@ class TableCompiler extends SQLCompiler
                 ));
         }
 
+        return $this;
+    }
+
+    /**
+     * @param string $command
+     * @return TableCompiler
+     */
+    public function setCommand(string $command): TableCompiler
+    {
+        $this->command = $command;
         return $this;
     }
 

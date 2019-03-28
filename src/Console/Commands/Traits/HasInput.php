@@ -6,7 +6,7 @@
  * Time: 02:25
  */
 
-namespace OZA\Database\Console\Commands;
+namespace OZA\Database\Console\Commands\Traits;
 
 
 trait HasInput

@@ -56,7 +56,7 @@ class MigrationsTest extends DatabaseTestCase
     public function test_migrate_table()
     {
         $table = new Table('users');
-        $table->integer('id')->autoIncrement()->unsigned()->primary();
+        $table->integer('id')->autoIncrement()->unsigned();
         $table->string('name')->nullable();
         $table->string('username')->default('hello@world');
         $table->integer('likes')->default(0);
@@ -64,6 +64,6 @@ class MigrationsTest extends DatabaseTestCase
         $table->integer('votes')->nullable();
 //        var_dump($table->toSql());
 //        die();
-        $this->assertIsInt($table->migrate());
+        $this->assertTrue($table->migrate());
     }
 }
