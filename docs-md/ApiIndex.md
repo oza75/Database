@@ -1,0 +1,53 @@
+API Index
+=========
+
+* OZA
+    * OZA\Database
+        * OZA\Database\Compiler
+            * [TableCompiler](OZA-Database-Compiler-TableCompiler.md)
+            * [ColumnCompiler](OZA-Database-Compiler-ColumnCompiler.md)
+            * [QueryCompiler](OZA-Database-Compiler-QueryCompiler.md)
+            * [SQLCompiler](OZA-Database-Compiler-SQLCompiler.md)
+        * OZA\Database\Facade
+            * [BaseFacade](OZA-Database-Facade-BaseFacade.md)
+            * [Query](OZA-Database-Facade-Query.md)
+            * [TableNameResolver](OZA-Database-Facade-TableNameResolver.md)
+            * [InsertQuery](OZA-Database-Facade-InsertQuery.md)
+        * OZA\Database\Decorators
+            * [QueryBuilderDecorator](OZA-Database-Decorators-QueryBuilderDecorator.md)
+        * OZA\Database\Helpers
+            * [Arr](OZA-Database-Helpers-Arr.md)
+            * [Str](OZA-Database-Helpers-Str.md)
+        * OZA\Database\Events
+            * [Emitter](OZA-Database-Events-Emitter.md)
+            * [Event](OZA-Database-Events-Event.md)
+        * OZA\Database\Console
+            * OZA\Database\Console\Commands
+                * [BaseCommand](OZA-Database-Console-Commands-BaseCommand.md)
+                * [MigrationRollbackCommand](OZA-Database-Console-Commands-MigrationRollbackCommand.md)
+                * [MigrateCommand](OZA-Database-Console-Commands-MigrateCommand.md)
+        * OZA\Database\Migrations
+            * OZA\Database\Migrations\Schema
+                * [Schema](OZA-Database-Migrations-Schema-Schema.md)
+            * [MigrationTable](OZA-Database-Migrations-MigrationTable.md)
+            * OZA\Database\Migrations\Interfaces
+                * [MigrationTableInterface](OZA-Database-Migrations-Interfaces-MigrationTableInterface.md)
+            * [Column](OZA-Database-Migrations-Column.md)
+            * [MigrationTableMigration](OZA-Database-Migrations-MigrationTableMigration.md)
+            * OZA\Database\Migrations\Constraints
+                * [ForeignConstraint](OZA-Database-Migrations-Constraints-ForeignConstraint.md)
+        * OZA\Database\Factory
+            * [SeederFactory](OZA-Database-Factory-SeederFactory.md)
+        * OZA\Database\Exceptions
+            * OZA\Database\Exceptions\Column
+                * [InvalidTypeForAutoIncrement](OZA-Database-Exceptions-Column-InvalidTypeForAutoIncrement.md)
+        * [Db](OZA-Database-Db.md)
+        * OZA\Database\Query
+            * [TableNameResolver](OZA-Database-Query-TableNameResolver.md)
+            * [InsertQuery](OZA-Database-Query-InsertQuery.md)
+            * OZA\Database\Query\Relations
+                * [ManyToOne](OZA-Database-Query-Relations-ManyToOne.md)
+            * [UpdateQuery](OZA-Database-Query-UpdateQuery.md)
+* [tableNameFormatted](tableNameFormatted.md)
+* [DummyCommand](DummyCommand.md)
+

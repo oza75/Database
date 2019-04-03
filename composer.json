@@ -26,6 +26,6 @@
     "friendsofphp/php-cs-fixer": "3.0.x-dev",
     "fzaninotto/faker": "^1.9@dev",
     "squizlabs/php_codesniffer": "^3.0@dev",
-    "victorjonsson/markdowndocs": "dev-master"
+    "evert/phpdoc-md": "dev-master"
   }
 }
