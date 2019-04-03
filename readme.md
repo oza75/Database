@@ -228,3 +228,5 @@ class UserEntity extends Entity
      ->get(); 
   });
  ```
+ There are plenty methods on QueryBuilder , If you have already work with Laravel
+ Just use it like Laravel QueryBuilder.
