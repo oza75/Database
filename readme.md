@@ -217,7 +217,7 @@ class UserEntity extends Entity
  // Count
   \App\Entities\UserEntity::query()->count();
   
-  // Which Where clause
+  // With Where clause
   \App\Entities\UserEntity::query()->where('name', 'aboubacar');
   
   \App\Entities\UserEntity::query()->where('name', 'LIKE', '%bouba%');
