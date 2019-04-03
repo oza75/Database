@@ -148,4 +148,83 @@ you've faced the problem that database migrations solve.
    php vendor/bin/database migrate:rollback
   ``` 
   This will rollback the latest migrations you've committed
+
+### ORM
+The package comes also with a little ORM
+    
+To retrieve information in our table your use the QueryBuilder class or Query Facade
+
+```php
+    <?php
+    $user = \OZA\Database\Facade\Query::table('users')->find(2);
+```
+
+There are a lot of methods(`where`, `orWhere`, `whereIn`, `orWhereIn`, `get`, `first`, `limit` etc...) on table that helps you to retrieve your data
+You can find QueryBuilder Documentation here :  
+
+You can also create an **UserEntity** which will represents your User
+
+```php
+<?php
+<?php
+
+
+namespace OZA\Database\Tests\Entities;
+
+
+use OZA\Database\Query\Entity;
+use OZA\Database\Query\Relations\ManyToOne;
+
+class UserEntity extends Entity
+{
+
+    /**
+     * @param string $value
+     * @return mixed
+     */
+    public function getEmailAttribute(string $value)
+    {
+        return strtoupper($value);
+    }
+
+    public function setNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+    /**
+     * @return ManyToOne
+     */
+    public function posts()
+    {
+        return $this->manyToOne(PostEntity::class, 'user_id', 'id');
+    }
+}
+```
+
+ Then you can fetch users like : 
+ ```php
+ <?php
+ // Create new User
+ \App\Entities\UserEntity::make([
+     'name' => 'Aboubacar',
+     'email' => 'user@email.com'
+])->create();
+ 
+ // Find a User
+ \App\Entities\UserEntity::query()->find(2);
+ 
+ // Count
+  \App\Entities\UserEntity::query()->count();
   
+  // Which Where clause
+  \App\Entities\UserEntity::query()->where('name', 'aboubacar');
+  
+  \App\Entities\UserEntity::query()->where('name', 'LIKE', '%bouba%');
+  
+  \App\Entities\UserEntity::query()->where(function (\OZA\Database\Query\QueryBuilder $builder) {
+     $builder->where('name', 'aboubacar')
+     ->orWhere('name', 'oza')
+     ->get(); 
+  });
+ ```
