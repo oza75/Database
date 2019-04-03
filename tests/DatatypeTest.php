@@ -10,6 +10,7 @@ namespace OZA\Database\Tests;
 
 
 use Exception;
+use OZA\Database\Config;
 use OZA\Database\Migrations\Table;
 
 class DatatypeTest extends TestCase
@@ -190,6 +191,7 @@ class DatatypeTest extends TestCase
 
         $this->assertEquals('CREATE TABLE test ( user_id INT(10) NOT NULL , CONSTRAINT Fk_UsersTest FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE cascade );', $table->toSql());
     }
+
     public function test_foreign_key_with_onUpdate()
     {
         $table = new Table('test');

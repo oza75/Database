@@ -14,9 +14,9 @@ class ClassesFinder
     /**
      * Find all classes in a given directory
      *
-     * @param  string      $directory
-     * @param  string|null $parent
-     * @param  bool        $all
+     * @param string $directory
+     * @param string|null $parent
+     * @param bool $all
      * @return array
      */
     public static function find(string $directory, string $parent = null, bool $all = true)
@@ -36,7 +36,7 @@ class ClassesFinder
                 $classes[] = $namespace;
             } else {
                 $declared = get_declared_classes();
-                include_once $file;
+                require_once $file;
                 $diff = array_diff(get_declared_classes(), $declared);
                 $class = reset($diff);
                 $parts = explode('\\', $class);
@@ -46,9 +46,11 @@ class ClassesFinder
             }
 
             if (!is_null($parent)) {
-                if ($parent !== $class && is_subclass_of($class, $parent)) { $classes[] = $class;
+                if ($parent !== $class && is_subclass_of($class, $parent)) {
+                    $classes[] = $class;
                 }
-            } else { $classes[] = $class;
+            } else {
+                $classes[] = $class;
             }
 
         }
@@ -59,8 +61,8 @@ class ClassesFinder
     /**
      * Check if a given command is a subclass of a given class
      *
-     * @param  string $class
-     * @param  string $parent
+     * @param string $class
+     * @param string $parent
      * @return bool
      */
     public static function extends(string $class, string $parent)
@@ -72,7 +74,7 @@ class ClassesFinder
      * Find classes in files
      * Do not work if the class constructor take arguments
      *
-     * @param  array $files
+     * @param array $files
      * @return array
      */
     public static function findClassInFiles(array $files)

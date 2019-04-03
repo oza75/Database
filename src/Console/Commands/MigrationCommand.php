@@ -45,7 +45,7 @@ class MigrationCommand extends BaseCommand
     /**
      * Get stub content
      *
-     * @param  string|null $type
+     * @param string|null $type
      * @return false|string
      */
     protected function getStub(?string $type = 'create')
@@ -77,7 +77,8 @@ class MigrationCommand extends BaseCommand
     protected function getTableName()
     {
         $table = $this->option('table');
-        if (!$table) { throw new Exception('You must defined the name of table (e.g: --table=users)');
+        if (!$table) {
+            throw new Exception('You must defined the name of table (e.g: --table=users)');
         }
 
         return Str::sanitize($table);
@@ -93,14 +94,13 @@ class MigrationCommand extends BaseCommand
         $name = $this->argument('name', 'migration_without_name');
         $name = Str::sanitize($name);
         $name = date('Y_m_d_H_i_s') . '_' . $name;
-
         return Config::get('db.migrations.folder', __DIR__ . '/') . $name . '.php';
     }
 
     /**
      * Create file
      *
-     * @param  string $filename
+     * @param string $filename
      * @param  $data
      * @return bool|int
      */

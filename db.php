@@ -7,6 +7,6 @@ return [
     "username" => "aboubacar",
     "password" => "aboubacar",
     "migrations" => [
-        "folder" => __DIR__ . '/../migrations/'
+        "folder" => __DIR__ . '/migrations/'
     ]
 ];

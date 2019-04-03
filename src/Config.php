@@ -9,7 +9,9 @@
 namespace OZA\Database;
 
 
+use Composer\Autoload\ClassLoader;
 use OZA\Database\Helpers\Arr;
+use ReflectionClass;
 
 class Config
 {
@@ -42,7 +44,9 @@ class Config
     protected function __construct(?string $filename = null)
     {
         if (is_null($filename)) {
-            $filename = __DIR__ . '/../db.php';
+            $reflection = new ReflectionClass(ClassLoader::class);
+            $root = dirname(dirname($reflection->getFileName()));
+            $filename = realpath($root . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . "db.php");
         }
 
         $this->register($filename);
@@ -63,7 +67,7 @@ class Config
 
     public static function get(string $key, ?string $default = null)
     {
-        return self::instance()->getConfigs($key) ?? $default;
+        return static::instance()->getConfigs($key) ?? $default;
     }
 
     /**
@@ -78,6 +82,8 @@ class Config
         } else {
             $this->files[] = $filename;
         }
+
+        $this->load();
     }
 
     /**
