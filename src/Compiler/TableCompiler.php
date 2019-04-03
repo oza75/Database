@@ -6,7 +6,7 @@
  * Time: 20:05
  */
 
-namespace OZA\Database\Migrations\Compiler;
+namespace OZA\Database\Compiler;
 
 
 use OZA\Database\Migrations\Table;
@@ -130,6 +130,10 @@ class TableCompiler extends SQLCompiler
                 ->compileUniqueKeys();
         }
 
+        if (!empty($this->table->getForeignKeys())) {
+            $this->compileForeignKeys();
+        }
+
         return $this;
     }
 
@@ -148,6 +152,14 @@ class TableCompiler extends SQLCompiler
         }
 
         return $this;
+    }
+
+    private function compileForeignKeys()
+    {
+        foreach ($this->table->getForeignKeys() as $key) {
+            $this->addPart(',');
+            $this->addPart($key->toSql());
+        }
     }
 
     /**

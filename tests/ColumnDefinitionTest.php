@@ -9,7 +9,6 @@
 namespace OZA\Database\Tests;
 
 
-use OZA\Database\Exceptions\Column\InvalidTypeForAutoIncrement;
 use OZA\Database\Migrations\Column;
 use OZA\Database\Migrations\Table;
 
@@ -32,8 +31,9 @@ class ColumnDefinitionTest extends TestCase
     public function test_auto_increment_with_non_integer()
     {
         $column = $this->prepareTest('string');
-        $this->expectException(InvalidTypeForAutoIncrement::class);
-        $column->autoIncrement();
+//        $this->expectException(InvalidTypeForAutoIncrement::class);
+//        $column->autoIncrement();
+        $this->assertFalse($column->autoIncrement()->isAutoIncrement());
     }
 
     public function test_auto_increment()
@@ -41,7 +41,7 @@ class ColumnDefinitionTest extends TestCase
         $column = $this->prepareTest('integer');
         $column->autoIncrement();
 
-        $this->assertEquals("test_column INT(10) AUTO_INCREMENT NOT NULL", $column->toSql());
+        $this->assertEquals("test_column INT(10) NOT NULL AUTO_INCREMENT", $column->toSql());
     }
 
     public function test_nullable()

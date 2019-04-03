@@ -32,6 +32,7 @@ class MigrationsTest extends DatabaseTestCase
     public function test_create_string_columns()
     {
         $table = new Table('users');
+        $table->setCommand('create');
         $table->string('name')->nullable();
         $table->string('username')->default('hello@world');
 
@@ -44,6 +45,7 @@ class MigrationsTest extends DatabaseTestCase
     public function test_create_int_decimal_columns()
     {
         $table = new Table('users');
+        $table->setCommand('create');
         $table->integer('likes')->default(0);
         $table->float('prices')->default(150);
         $table->integer('votes')->nullable();
@@ -57,6 +59,7 @@ class MigrationsTest extends DatabaseTestCase
     public function test_migrate_table()
     {
         $table = new Table('users');
+        $table->setCommand('create');
         $table->integer('id')->autoIncrement()->unsigned();
         $table->string('name')->nullable();
         $table->string('username')->default('hello@world');

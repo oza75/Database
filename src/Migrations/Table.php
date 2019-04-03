@@ -9,8 +9,9 @@
 namespace OZA\Database\Migrations;
 
 use Exception;
+use OZA\Database\Compiler\TableCompiler;
 use OZA\Database\Db;
-use OZA\Database\Migrations\Compiler\TableCompiler;
+use OZA\Database\Migrations\Constraints\ForeignConstraint;
 use OZA\Database\Migrations\Interfaces\DatatypeInterface;
 use OZA\Database\Migrations\Traits\DatatypeTrait;
 use PDOStatement;
@@ -56,9 +57,17 @@ class Table implements DatatypeInterface
     protected $uniques = [];
 
     /**
+     * List of all foreign keys
+     *
+     * @var array
+     */
+    protected $foreignKeys = [];
+
+    /**
      * @var Db
      */
     protected $db;
+
 
     /**
      * Table constructor.
@@ -182,6 +191,14 @@ class Table implements DatatypeInterface
     }
 
     /**
+     * @return array
+     */
+    public function getForeignKeys(): array
+    {
+        return $this->foreignKeys;
+    }
+
+    /**
      * Add column to table
      *
      * @param string $name
@@ -249,5 +266,19 @@ class Table implements DatatypeInterface
         $pdo = Db::fromConfig()->getPdo();
         $pdo->query(sprintf("DROP TABLE %s", $table));
 
+    }
+
+    /**
+     * Set foreign column
+     *
+     * @param string $column
+     * @param string|null $name
+     * @return ForeignConstraint
+     */
+    public function foreign(string $column, string $name = null)
+    {
+        $foreign = new ForeignConstraint($this, $column, $name);
+        $this->foreignKeys[] = $foreign;
+        return $foreign;
     }
 }

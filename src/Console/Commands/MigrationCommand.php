@@ -89,7 +89,7 @@ class MigrationCommand extends BaseCommand
     {
         $name = $this->argument('name', 'migration_without_name');
         $name = Str::sanitize($name);
-        $name .= '_' . date('Y_m_d_H_i_s');
+        $name = date('Y_m_d_H_i_s') . '_' . $name;
 
         return Config::get('db.migrations.folder', __DIR__ . '/') . $name . '.php';
     }

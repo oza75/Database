@@ -6,7 +6,7 @@
  * Time: 19:00
  */
 
-namespace OZA\Database\Migrations\Compiler;
+namespace OZA\Database\Compiler;
 
 
 use OZA\Database\Migrations\Column;

@@ -159,15 +159,45 @@ class DatatypeTest extends TestCase
     {
         $table = $this->prepareTest('timestamp', 'email');
 
-        $this->assertEquals("CREATE TABLE test ( email TIMESTAMP NOT NULL );", $table->toSql());
+        $this->assertEquals("CREATE TABLE test ( email TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP );", $table->toSql());
     }
 
     protected function prepareTest(string $type, string $name, ...$args)
     {
         $table = new Table('test');
+        $table->setCommand('create');
         call_user_func_array([$table, $type], array_merge([$name], $args));
 
         return $table;
+    }
+
+    public function test_foreign_key()
+    {
+        $table = new Table('test');
+        $table->setCommand('create');
+        $table->integer('user_id');
+        $table->foreign('user_id')->references('id')->on('users');
+
+        $this->assertEquals('CREATE TABLE test ( user_id INT(10) NOT NULL , CONSTRAINT Fk_UsersTest FOREIGN KEY (user_id) REFERENCES users(id) );', $table->toSql());
+    }
+
+    public function test_foreign_key_with_onDelete()
+    {
+        $table = new Table('test');
+        $table->setCommand('create');
+        $table->integer('user_id');
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+        $this->assertEquals('CREATE TABLE test ( user_id INT(10) NOT NULL , CONSTRAINT Fk_UsersTest FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE cascade );', $table->toSql());
+    }
+    public function test_foreign_key_with_onUpdate()
+    {
+        $table = new Table('test');
+        $table->setCommand('create');
+        $table->integer('user_id');
+        $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+
+        $this->assertEquals('CREATE TABLE test ( user_id INT(10) NOT NULL , CONSTRAINT Fk_UsersTest FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE cascade );', $table->toSql());
     }
 
 }

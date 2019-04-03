@@ -14,7 +14,9 @@ use OZA\Database\Helpers\Arr;
 class Config
 {
     /**
-     * @var null
+     * An instance of config
+     *
+     * @var Config|null
      */
     protected static $_instance = null;
 

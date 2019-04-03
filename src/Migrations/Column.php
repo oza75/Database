@@ -9,7 +9,7 @@
 namespace OZA\Database\Migrations;
 
 
-use OZA\Database\Migrations\Compiler\ColumnCompiler;
+use OZA\Database\Compiler\ColumnCompiler;
 use OZA\Database\Migrations\Traits\ColumnDefinition;
 
 class Column

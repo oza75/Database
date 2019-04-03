@@ -6,7 +6,7 @@
  * Time: 18:55
  */
 
-namespace OZA\Database\Migrations\Compiler;
+namespace OZA\Database\Compiler;
 
 /**
  * Class SQLCompiler

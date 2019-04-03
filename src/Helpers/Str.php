@@ -29,14 +29,14 @@ class Str
      *
      * @output = 'text_case' => TextCase
      *
-     * @author OZA <abouba181@gmail.com>, ig: @mr_oza.dev
      * @param string $string
      * @return string
+     * @author OZA <abouba181@gmail.com>, ig: @mr_oza.dev
      */
     public static function studly(string $string)
     {
         return join('', array_map(function ($part) {
-            return ucfirst($part);
+            return ucfirst(strtolower($part));
         }, explode('_', $string)));
     }
 
@@ -67,5 +67,27 @@ class Str
     public static function withoutPart(string $string, string $part)
     {
         return str_replace($part, '', $string);
+    }
+
+    /**
+     * Get Snake case string
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function snake(string $string)
+    {
+        return ltrim(strtolower(preg_replace('/[A-Z]([A-Z](?![a-z]))*/', '_$0', $string)), '_');
+    }
+
+    /**
+     * Get Plural
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function plural(string $string)
+    {
+        return self::endsWith($string, 's') ? $string : $string . 's';
     }
 }
