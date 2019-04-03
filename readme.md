@@ -133,4 +133,19 @@ you've faced the problem that database migrations solve.
          }
      }
      ```   
-      
+      - See [Column types]()
+      - See [Column Definitions]()
+- when you're satisfy with yours migrations files, commit them to your database
+   
+  In your terminal
+  ```bash
+   php vendor/bin/database migrate
+  ``` 
+- If you want to rollback 
+       
+  In your terminal
+  ```bash
+   php vendor/bin/database migrate:rollback
+  ``` 
+  This will rollback the latest migrations you've committed
+  
