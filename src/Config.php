@@ -42,7 +42,7 @@ class Config
     protected function __construct(?string $filename = null)
     {
         if (is_null($filename)) {
-            $filename = __DIR__ . '/db.php';
+            $filename = __DIR__ . '/../db.php';
         }
 
         $this->register($filename);
@@ -75,7 +75,8 @@ class Config
     {
         if (is_dir($filename)) {
             $this->files = array_merge($this->getFiles(), glob($filename . '**/*.php'));
-        } else { $this->files[] = $filename;
+        } else {
+            $this->files[] = $filename;
         }
     }
 
@@ -103,7 +104,7 @@ class Config
     /**
      * Get configuration data
      *
-     * @param  string $key
+     * @param string $key
      * @return null|array|mixed
      */
     public function getConfigs(string $key)
