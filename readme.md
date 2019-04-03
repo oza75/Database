@@ -1,4 +1,7 @@
-### A database wrapper to deal easily with your database
+### A Database package to deal with your data
+- Fully Tested With Mysql Driver
+- Contributors Needed
+- Made without any dependency
 #### Usage
 First create a config file with your database configuration in **Application root Folder (IMPORTANT)**
 - Example of config file
@@ -218,9 +221,10 @@ class UserEntity extends Entity
   \App\Entities\UserEntity::query()->count();
   
   // With Where clause
-  \App\Entities\UserEntity::query()->where('name', 'aboubacar');
+  \App\Entities\UserEntity::query()->where('name', 'aboubacar')->get();
   
-  \App\Entities\UserEntity::query()->where('name', 'LIKE', '%bouba%');
+  // First item
+  \App\Entities\UserEntity::query()->where('name', 'LIKE', '%bouba%')->first();
   
   \App\Entities\UserEntity::query()->where(function (\OZA\Database\Query\QueryBuilder $builder) {
      $builder->where('name', 'aboubacar')

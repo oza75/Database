@@ -1,6 +1,6 @@
 {
   "name": "oza/database",
-  "description": "A Database Wrapper to deal with your data",
+  "description": "A Database package to deal with your data",
   "type": "library",
   "require": {
     "php": "^7.1",

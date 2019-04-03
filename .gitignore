@@ -4,5 +4,6 @@ vendor/*
 composer.lock
 migrations/*
 docs/*
+App/*
 db.php
 db.log
