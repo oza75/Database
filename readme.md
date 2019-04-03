@@ -26,10 +26,15 @@ First create a config file with your database configuration
 ```
 #### Migrations
 Migrations are like version control for your database, allowing your team to easily modify and share the application's database schema. 
+
 Migrations are typically paired with  schema builder to easily build your application's database schema. 
+
 If you have ever had to tell a teammate to manually add a column to their local database schema, 
+
 you've faced the problem that database migrations solve.
+
 - How to create migrations
+
 Open your terminal and run 
 ```bash
 php vendor/bin/database migration {name_of_migrations} --table={name_of_table_you_want_to_create}
