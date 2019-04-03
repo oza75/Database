@@ -15,7 +15,7 @@ class Str
     /**
      * Sanitize string and return only alpha numeric characters
      *
-     * @param string $string
+     * @param  string $string
      * @return string|string[]|null
      */
     public static function sanitize(string $string)
@@ -29,22 +29,26 @@ class Str
      *
      * @output = 'text_case' => TextCase
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      * @author OZA <abouba181@gmail.com>, ig: @mr_oza.dev
      */
     public static function studly(string $string)
     {
-        return join('', array_map(function ($part) {
-            return ucfirst(strtolower($part));
-        }, explode('_', $string)));
+        return join(
+            '', array_map(
+                function ($part) {
+                    return ucfirst(strtolower($part));
+                }, explode('_', $string)
+            )
+        );
     }
 
     /**
      * Check if string ends with a given value
      *
-     * @param string $haystack
-     * @param string $needle
+     * @param  string $haystack
+     * @param  string $needle
      * @return bool
      */
     public static function endsWith(string $haystack, string $needle)
@@ -60,8 +64,8 @@ class Str
     /**
      * Get string without a part
      *
-     * @param string $string
-     * @param string $part
+     * @param  string $string
+     * @param  string $part
      * @return mixed
      */
     public static function withoutPart(string $string, string $part)
@@ -72,7 +76,7 @@ class Str
     /**
      * Get Snake case string
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
     public static function snake(string $string)
@@ -83,7 +87,7 @@ class Str
     /**
      * Get Plural
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
     public static function plural(string $string)

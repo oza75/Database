@@ -8,7 +8,8 @@ use OZA\Database\Query\QueryBuilder;
 
 /**
  * Class Query
- * @method static QueryBuilder table(string $name)
+ *
+ * @method  static QueryBuilder table(string $name)
  * @package OZA\Database\Query\Facade
  */
 class Query extends BaseFacade

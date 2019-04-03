@@ -10,6 +10,7 @@ namespace OZA\Database\Compiler;
 
 /**
  * Class SQLCompiler
+ *
  * @package OZA\Database\Migrations\Compiler
  */
 class SQLCompiler
@@ -26,7 +27,7 @@ class SQLCompiler
     }
 
     /**
-     * @param string $sql
+     * @param  string $sql
      * @return $this
      */
     protected function addPart(string $sql): self

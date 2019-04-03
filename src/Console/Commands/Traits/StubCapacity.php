@@ -13,11 +13,10 @@ trait StubCapacity
 {
 
     /**
-     *
      * Replace all variables inside stub
      *
-     * @param $stub
-     * @param array $variables
+     * @param  $stub
+     * @param  array $variables
      * @return mixed
      */
     protected function replaceVariables($stub, array $variables)

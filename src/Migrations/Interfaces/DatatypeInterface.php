@@ -15,7 +15,7 @@ interface DatatypeInterface
     /**
      * Varchar Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function string(string $name);
@@ -23,7 +23,7 @@ interface DatatypeInterface
     /**
      * Integer column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function integer(string $name): Column;
@@ -31,7 +31,7 @@ interface DatatypeInterface
     /**
      * Big Integer Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function bigInteger(string $name): Column;
@@ -39,24 +39,25 @@ interface DatatypeInterface
     /**
      * Tiny Integer Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function tinyInteger(string $name): Column;
 
     /**
-     * @param string $name
-     * @param int|null $max
-     * @param int|null $scale
+     * @param  string   $name
+     * @param  int|null $max
+     * @param  int|null $scale
      * @return Column
      */
     public function float(string $name, ?int $max = 20, ?int $scale = 2): Column;
 
     /**
      * Create double column
-     * @param string $name
-     * @param int|null $max
-     * @param int|null $scale
+     *
+     * @param  string   $name
+     * @param  int|null $max
+     * @param  int|null $scale
      * @return Column
      */
     public function double(string $name, ?int $max = 20, ?int $scale = 2): Column;
@@ -64,8 +65,7 @@ interface DatatypeInterface
     /**
      * Create text column
      *
-     *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function text(string $name): Column;
@@ -73,7 +73,7 @@ interface DatatypeInterface
     /**
      * Create Medium Text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function mediumText(string $name): Column;
@@ -81,7 +81,7 @@ interface DatatypeInterface
     /**
      * Create blob column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function blob(string $name): Column;
@@ -89,7 +89,7 @@ interface DatatypeInterface
     /**
      * Create long text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function longText(string $name): Column;
@@ -97,7 +97,7 @@ interface DatatypeInterface
     /**
      * Create tiny text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function tinyText(string $name): Column;
@@ -106,7 +106,7 @@ interface DatatypeInterface
      * Create enum column
      *
      * @param string $name
-     * @param array $possibilities
+     * @param array  $possibilities
      */
     public function enum(string $name, array $possibilities);
 

@@ -29,7 +29,7 @@ class ColumnCompiler extends SQLCompiler
     /**
      * Compile Column to sql
      *
-     * @param Column $column
+     * @param  Column $column
      * @return string
      */
     public static function compile(Column $column): string
@@ -58,7 +58,8 @@ class ColumnCompiler extends SQLCompiler
     {
         $type = $this->column->getType();
         $sql = $type['type'];
-        if (isset($type['length']) && !is_null($type['length'])) $sql .= "({$type['length']})";
+        if (isset($type['length']) && !is_null($type['length'])) { $sql .= "({$type['length']})";
+        }
 
         $this->addPart($sql);
         return $this;
@@ -108,13 +109,14 @@ class ColumnCompiler extends SQLCompiler
     /**
      * Parse default value
      *
-     * @param $default
+     * @param  $default
      * @return string
      */
     protected function parseDefault($default)
     {
         $type = strtoupper($this->column->getType()['type']);
-        if (in_array($type, $this->dontQuotesTypes) || is_numeric($default)) return $default;
+        if (in_array($type, $this->dontQuotesTypes) || is_numeric($default)) { return $default;
+        }
 
         return "'$default'";
     }

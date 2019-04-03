@@ -13,6 +13,7 @@ class InsertQuery
 
     /**
      * InsertQuery constructor.
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes)
@@ -39,9 +40,13 @@ class InsertQuery
     {
         $keys = array_keys($this->attributes);
         $column = join(', ', $keys);
-        $params = join(', ', array_map(function ($item) {
-            return '?';
-        }, $keys));
+        $params = join(
+            ', ', array_map(
+                function ($item) {
+                    return '?';
+                }, $keys
+            )
+        );
 
         return sprintf("( %s ) VALUES ( %s )", $column, $params);
     }

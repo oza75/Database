@@ -21,7 +21,7 @@ class QueryCompiler extends SQLCompiler
     protected $query;
 
     /**
-     * @param QueryBuilder $query
+     * @param  QueryBuilder $query
      * @return string
      */
     public static function compile(QueryBuilder $query)
@@ -29,16 +29,20 @@ class QueryCompiler extends SQLCompiler
         $compiler = new self();
         $compiler->query = $query;
 
-        if (!is_null($query->getCommand())) $compiler->compileCommand();
-        if (!is_null($query->getTable())) $compiler->compileTableName();
+        if (!is_null($query->getCommand())) { $compiler->compileCommand();
+        }
+        if (!is_null($query->getTable())) { $compiler->compileTableName();
+        }
 
         if ($query->getCommand() == 'update') {
             $compiler->addPart('SET')
                 ->addPart($query->getUpdateSql());
         }
 
-        if (!empty($query->getWheres())) $compiler->compileWhereClauses();
-        if (!is_null($query->getLimit())) $compiler->addPart(sprintf("LIMIT %s", $query->getLimit()));
+        if (!empty($query->getWheres())) { $compiler->compileWhereClauses();
+        }
+        if (!is_null($query->getLimit())) { $compiler->addPart(sprintf("LIMIT %s", $query->getLimit()));
+        }
 
         return $compiler->handle();
     }
@@ -58,12 +62,14 @@ class QueryCompiler extends SQLCompiler
     private function compileWhereClauses()
     {
         $clauses = $this->query->getWheres();
-        if (!$this->query->isSubQuery()) $this->addPart('WHERE');
+        if (!$this->query->isSubQuery()) { $this->addPart('WHERE');
+        }
         foreach ($clauses as $key => $clause) {
-            if ($key > 0) $this->addPart(strtoupper($clause['logic']));
+            if ($key > 0) { $this->addPart(strtoupper($clause['logic']));
+            }
 
-            if (is_callable($clause['condition'])) $this->compileWhereClauseSubQuery($clause);
-            else {
+            if (is_callable($clause['condition'])) { $this->compileWhereClauseSubQuery($clause);
+            } else {
                 $sql = $clause['column'] . " " . $clause['operator'] . " " . $clause['condition'];
 
                 if (strtolower($clause['operator']) === 'in') {
@@ -104,7 +110,8 @@ class QueryCompiler extends SQLCompiler
         $selects = empty($selects) ? ['*'] : $selects;
 
         $distinct = $this->query->getDistinct();
-        if (!is_null($distinct)) $selects[] = sprintf("DISTINCT %s", $distinct);
+        if (!is_null($distinct)) { $selects[] = sprintf("DISTINCT %s", $distinct);
+        }
 
         $sql = join(', ', $selects);
 

@@ -29,9 +29,11 @@ trait MigrationTrait
     private function getAllMigrations()
     {
         $files = glob(Config::get('db.migrations.folder') . '/*.php');
-        $files = array_map(function ($item) {
-            return realpath($item);
-        }, $files);
+        $files = array_map(
+            function ($item) {
+                return realpath($item);
+            }, $files
+        );
         $files = Arr::except($files, Arr::pluck($this->databaseMigrations, 'filename'));
 
         return ClassesFinder::findClassInFiles($files);
@@ -65,8 +67,8 @@ trait MigrationTrait
     }
 
     /**
-     * @param $file
-     * @param int $belongs
+     * @param  $file
+     * @param  int  $belongs
      * @throws Exception
      */
     protected function addMigration($file, int $belongs)
@@ -79,7 +81,7 @@ trait MigrationTrait
     /**
      * Remove Migration
      *
-     * @param $filename
+     * @param  $filename
      * @throws Exception
      */
     protected function removeMigration($filename)

@@ -29,7 +29,7 @@ class TableCompiler extends SQLCompiler
     protected $command;
 
     /**
-     * @param Table $table
+     * @param  Table $table
      * @return string
      */
     public static function compile(Table $table)
@@ -99,23 +99,28 @@ class TableCompiler extends SQLCompiler
     private function compilePrimaryKeys(): self
     {
         return $this->addPart(
-            sprintf(" CONSTRAINT %s PRIMARY KEY (%s) ",
+            sprintf(
+                " CONSTRAINT %s PRIMARY KEY (%s) ",
                 'pk_' . strtolower($this->table->getName()),
                 join(', ', $this->table->getPrimaryKeys())
-            ));
+            )
+        );
     }
 
     private function compileUniqueKeys(): self
     {
         return $this->addPart(
-            sprintf(" CONSTRAINT %s UNIQUE (%s) ",
+            sprintf(
+                " CONSTRAINT %s UNIQUE (%s) ",
                 'uc_' . strtolower($this->table->getName()),
                 join(', ', $this->table->getUniqueKeys())
-            ));
+            )
+        );
     }
 
     /**
      * Compile Contraints
+     *
      * @return TableCompiler
      */
     private function compileConstraints(): self
@@ -145,10 +150,12 @@ class TableCompiler extends SQLCompiler
         if (!empty($indexes)) {
             $name = substr(join('_', $indexes), 0, 25) . '_index';
             $this->addPart(
-                sprintf("CREATE INDEX %s ON %s (%s);",
+                sprintf(
+                    "CREATE INDEX %s ON %s (%s);",
                     $name, $this->table->getName(),
                     join(", ", $indexes)
-                ));
+                )
+            );
         }
 
         return $this;
@@ -163,7 +170,7 @@ class TableCompiler extends SQLCompiler
     }
 
     /**
-     * @param string $command
+     * @param  string $command
      * @return TableCompiler
      */
     public function setCommand(string $command): TableCompiler
@@ -175,13 +182,15 @@ class TableCompiler extends SQLCompiler
     /**
      * Quotes values
      *
-     * @param array $array
+     * @param  array $array
      * @return array
      */
     protected function quotes(array $array): array
     {
-        return array_map(function ($item) {
-            return "'$item'";
-        }, $array);
+        return array_map(
+            function ($item) {
+                return "'$item'";
+            }, $array
+        );
     }
 }

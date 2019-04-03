@@ -41,6 +41,7 @@ class Db
 
     /**
      * Db constructor.
+     *
      * @param string $driver
      * @param string $host
      * @param string $name
@@ -59,7 +60,7 @@ class Db
     }
 
     /**
-     * @param string|null $file
+     * @param  string|null $file
      * @return Db
      * @throws Exception
      */
@@ -132,7 +133,7 @@ class Db
     /**
      * Check if a table exists in the current database.
      *
-     * @param string $table Table to search for.
+     * @param  string $table Table to search for.
      * @return bool TRUE if table exists, FALSE if no table found.
      */
     public function tableExists(string $table)
@@ -144,10 +145,10 @@ class Db
             $result = $this->getPdo()->query("SELECT 1 FROM $table LIMIT 1");
         } catch (Exception $e) {
             // We got an exception == table not found
-            return FALSE;
+            return false;
         }
 
         // Result is either boolean FALSE (no table found) or PDOStatement Object (table found)
-        return $result !== FALSE;
+        return $result !== false;
     }
 }

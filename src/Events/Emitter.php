@@ -36,7 +36,7 @@ class Emitter
     /**
      * Register an event
      *
-     * @param string $event
+     * @param string   $event
      * @param callable $listener
      */
     public function on(string $event, callable $listener)
@@ -46,7 +46,7 @@ class Emitter
 
     /**
      * @param string $event
-     * @param array $args
+     * @param array  $args
      */
     public function emit(string $event, ...$args)
     {

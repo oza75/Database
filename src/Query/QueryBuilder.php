@@ -59,7 +59,7 @@ class QueryBuilder
     /**
      * Set current table
      *
-     * @param string $table
+     * @param  string $table
      * @return QueryBuilder
      */
     public function table(string $table): QueryBuilder
@@ -87,7 +87,7 @@ class QueryBuilder
     }
 
     /**
-     * @param string|null $command
+     * @param  string|null $command
      * @return QueryBuilder
      */
     public function setCommand(?string $command = null): QueryBuilder
@@ -105,7 +105,7 @@ class QueryBuilder
     }
 
     /**
-     * @param bool $subQuery
+     * @param  bool $subQuery
      * @return QueryBuilder
      */
     public function setSubQuery(bool $subQuery): QueryBuilder
@@ -123,7 +123,7 @@ class QueryBuilder
     }
 
     /**
-     * @param int $fetchMode
+     * @param  int $fetchMode
      * @return QueryBuilder
      */
     public function setFetchMode(int $fetchMode): QueryBuilder
@@ -141,7 +141,7 @@ class QueryBuilder
     }
 
     /**
-     * @param mixed $entity
+     * @param  mixed $entity
      * @return QueryBuilder
      */
     public function setEntity($entity)
@@ -152,7 +152,7 @@ class QueryBuilder
     }
 
     /**
-     * @param array $attributes
+     * @param  array $attributes
      * @return bool
      */
     public function insert(array $attributes)
@@ -162,7 +162,7 @@ class QueryBuilder
     }
 
     /**
-     * @param array $attributes
+     * @param  array $attributes
      * @return bool|PDOStatement
      */
     public function performInsert(array $attributes)
@@ -198,7 +198,7 @@ class QueryBuilder
     }
 
     /**
-     * @param array $attributes
+     * @param  array $attributes
      * @return string
      */
     public function insertAndGetId(array $attributes)
@@ -210,7 +210,7 @@ class QueryBuilder
     /**
      * Update rows
      *
-     * @param array $attributes
+     * @param  array $attributes
      * @return bool|PDOStatement
      */
     public function update(array $attributes)

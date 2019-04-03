@@ -50,8 +50,8 @@ class ForeignConstraint
     /**
      * ForeignConstraint constructor.
      *
-     * @param Table $table
-     * @param string $column
+     * @param Table       $table
+     * @param string      $column
      * @param string|null $name
      */
     public function __construct(Table $table, string $column, string $name = null)
@@ -64,7 +64,7 @@ class ForeignConstraint
     /**
      * Set reference column
      *
-     * @param string $column
+     * @param  string $column
      * @return $this
      */
     public function references(string $column)
@@ -76,7 +76,7 @@ class ForeignConstraint
     /**
      * Set reference table
      *
-     * @param string $table
+     * @param  string $table
      * @return $this
      */
     public function on(string $table)
@@ -121,7 +121,7 @@ class ForeignConstraint
     /**
      * Set onDelete mode
      *
-     * @param string $type
+     * @param  string $type
      * @return $this
      */
     public function onDelete(string $type)
@@ -134,7 +134,7 @@ class ForeignConstraint
     /**
      * Set onUpdate mode
      *
-     * @param string $type
+     * @param  string $type
      * @return ForeignConstraint
      */
     public function onUpdate(string $type)

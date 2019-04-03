@@ -21,7 +21,6 @@ class DummyCommand extends BaseCommand
 
     /**
      * DummyCommand constructor.
-     *
      */
     public function __construct()
     {
@@ -30,7 +29,6 @@ class DummyCommand extends BaseCommand
 
     /***
      * handle your command | Put your main code here
-     *
      */
     public function handle()
     {

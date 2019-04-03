@@ -71,6 +71,7 @@ class Table implements DatatypeInterface
 
     /**
      * Table constructor.
+     *
      * @param string $name
      */
     public function __construct(?string $name = null)
@@ -163,7 +164,7 @@ class Table implements DatatypeInterface
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return Table
      */
     public function setName(string $name): Table
@@ -173,7 +174,7 @@ class Table implements DatatypeInterface
     }
 
     /**
-     * @param string $command
+     * @param  string $command
      * @return Table
      */
     public function setCommand(string $command): Table
@@ -201,9 +202,9 @@ class Table implements DatatypeInterface
     /**
      * Add column to table
      *
-     * @param string $name
-     * @param string $type
-     * @param int|null $length
+     * @param  string   $name
+     * @param  string   $type
+     * @param  int|null $length
      * @return Column
      */
     protected function addColumn(string $name, string $type, $length = null)
@@ -218,7 +219,7 @@ class Table implements DatatypeInterface
     /**
      * Add index
      *
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function addIndex(string $name)
@@ -230,7 +231,7 @@ class Table implements DatatypeInterface
     /**
      * Add a primary key
      *
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function addPrimaryKey(string $name)
@@ -243,7 +244,7 @@ class Table implements DatatypeInterface
     /**
      * Add unique key to table
      *
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function addUniqueKey(string $name)
@@ -256,12 +257,13 @@ class Table implements DatatypeInterface
     /**
      * Drop table if exists
      *
-     * @param string $table
+     * @param  string $table
      * @throws Exception
      */
     public static function dropIfExists(string $table)
     {
-        if (!Db::fromConfig()->tableExists($table)) return;
+        if (!Db::fromConfig()->tableExists($table)) { return;
+        }
 
         $pdo = Db::fromConfig()->getPdo();
         $pdo->query(sprintf("DROP TABLE %s", $table));
@@ -271,8 +273,8 @@ class Table implements DatatypeInterface
     /**
      * Set foreign column
      *
-     * @param string $column
-     * @param string|null $name
+     * @param  string      $column
+     * @param  string|null $name
      * @return ForeignConstraint
      */
     public function foreign(string $column, string $name = null)

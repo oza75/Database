@@ -34,12 +34,15 @@ class MigrationRollbackCommand extends BaseCommand
     public function handle()
     {
         $this->databaseMigrations = $this->getDatabaseMigrations();
-        if (empty($this->databaseMigrations)) return;
+        if (empty($this->databaseMigrations)) { return;
+        }
 
         $lastMigration = $this->databaseMigrations[0]['belongs'];
-        $toRollbacks = array_filter($this->databaseMigrations, function ($item) use ($lastMigration) {
-            return $item['belongs'] == $lastMigration;
-        });
+        $toRollbacks = array_filter(
+            $this->databaseMigrations, function ($item) use ($lastMigration) {
+                return $item['belongs'] == $lastMigration;
+            }
+        );
 
         $files = Arr::pluck($toRollbacks, 'filename');
         $migrations = ClassesFinder::findClassInFiles($files);

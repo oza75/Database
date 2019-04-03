@@ -28,11 +28,10 @@ trait Clauses
     /**
      * Add where clause
      *
-     * @param string|callable $column
-     * @param mixed|null $operator
-     * @param mixed|null $condition
+     * @param  string|callable $column
+     * @param  mixed|null      $operator
+     * @param  mixed|null      $condition
      * @return $this
-     *
      */
     public function where($column, $operator = null, $condition = null)
     {
@@ -54,10 +53,10 @@ trait Clauses
     /**
      * Add a where Clause
      *
-     * @param string|callable $column
-     * @param string $operator
-     * @param mixed $condition
-     * @param string $logic
+     * @param  string|callable $column
+     * @param  string          $operator
+     * @param  mixed           $condition
+     * @param  string          $logic
      * @return QueryBuilder|Clauses
      */
     protected function addWhereClause($column, string $operator, $condition, string $logic)
@@ -70,7 +69,7 @@ trait Clauses
     }
 
     /**
-     * @param $condition
+     * @param  $condition
      * @return array|callable|string
      */
     protected function getWhereClauseStringParams($condition)
@@ -82,7 +81,8 @@ trait Clauses
         } else {
             if (is_array($condition)) {
                 $this->params = array_merge($this->params, $condition);
-            } else $this->params[] = $condition;
+            } else { $this->params[] = $condition;
+            }
         }
 
         return $param;
@@ -91,9 +91,9 @@ trait Clauses
     /**
      * Add orWhere clause
      *
-     * @param string|callable $column
-     * @param string|null $operator
-     * @param string|null $condition
+     * @param  string|callable $column
+     * @param  string|null     $operator
+     * @param  string|null     $condition
      * @return QueryBuilder
      */
     public function orWhere($column, $operator = null, $condition = null)
@@ -116,8 +116,8 @@ trait Clauses
     /**
      * Add whereIn clause
      *
-     * @param string $column
-     * @param array $data
+     * @param  string $column
+     * @param  array  $data
      * @return QueryBuilder|Clauses
      */
     public function whereIn(string $column, array $data)
@@ -128,8 +128,8 @@ trait Clauses
     /**
      * Add where in clause
      *
-     * @param string $column
-     * @param array $data
+     * @param  string $column
+     * @param  array  $data
      * @return QueryBuilder|Clauses
      */
     public function orWhereIn(string $column, array $data)

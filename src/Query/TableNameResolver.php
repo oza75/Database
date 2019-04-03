@@ -18,7 +18,7 @@ class TableNameResolver
     }
 
     /**
-     * @param string $classname
+     * @param  string $classname
      * @return mixed
      */
     protected function name(string $classname)
@@ -27,7 +27,7 @@ class TableNameResolver
     }
 
     /**
-     * @param $name
+     * @param  $name
      * @return mixed
      */
     protected function sanitize($name)

@@ -7,7 +7,8 @@ use PDO;
 
 /**
  * Trait Countable
- * @method PDO pdo()
+ *
+ * @method  PDO pdo()
  * @package OZA\Database\Query\Traits
  */
 trait Countable
@@ -15,11 +16,11 @@ trait Countable
     /**
      * Count rows
      *
-     * @return  integer
+     * @return integer
      */
     public function count(): int
     {
-//        $sql = sprintf("COUNT (*) as %s", strtolower($this->getTable()));
+        //        $sql = sprintf("COUNT (*) as %s", strtolower($this->getTable()));
         $this->select(["COUNT(*)"]);
         $statement = $this->pdo()->query($this->toSql());
         return $statement->fetchColumn();

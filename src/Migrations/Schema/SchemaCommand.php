@@ -12,22 +12,23 @@ trait SchemaCommand
     /**
      * Prepare schema
      *
-     * @param string $name
-     * @param string $command
+     * @param string        $name
+     * @param string        $command
      * @param callable|null $callback
      */
     public function prepare(string $name, string $command, ?callable $callback = null)
     {
         $table = new Table($name);
         $this->setCommand($command);
-        if ($callback) $callback($table);
+        if ($callback) { $callback($table);
+        }
         $this->execute($table);
     }
 
     /**
      * Create table
      *
-     * @param string $name
+     * @param string   $name
      * @param callable $callback
      */
     public function create(string $name, callable $callback)
@@ -38,7 +39,7 @@ trait SchemaCommand
     /**
      * Alter Table
      *
-     * @param string $name
+     * @param string   $name
      * @param callable $callback
      */
     public function alter(string $name, callable $callback)

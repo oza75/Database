@@ -24,7 +24,7 @@ trait Selectable
     /**
      * Select columns in table
      *
-     * @param array $columns
+     * @param  array $columns
      * @return $this
      */
     public function select(array $columns = [])
@@ -36,7 +36,7 @@ trait Selectable
     /**
      * Select Raw
      *
-     * @param string $string
+     * @param  string $string
      * @return $this
      */
     public function selectRaw(string $string)
@@ -48,7 +48,7 @@ trait Selectable
     /**
      * Select distinct according to a given column
      *
-     * @param string|null $column
+     * @param  string|null $column
      * @return $this
      */
     public function distinct(?string $column = 'id')

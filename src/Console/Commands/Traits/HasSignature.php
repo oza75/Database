@@ -23,14 +23,18 @@ trait HasSignature
     /**
      * Get signatures segments
      *
-     * @param int|null $segment
+     * @param  int|null $segment
      * @return array
      */
     public function signatureSegments(?int $segment = null)
     {
-        $segments = array_values(array_filter(explode(" ", $this->signature), function ($item) {
-            return trim($item) !== '';
-        }));
+        $segments = array_values(
+            array_filter(
+                explode(" ", $this->signature), function ($item) {
+                    return trim($item) !== '';
+                }
+            )
+        );
 
         return !is_null($segment) ? $segments[$segment] : $segments;
     }
@@ -42,9 +46,11 @@ trait HasSignature
      */
     public function signatureSegmentsWithoutHooks()
     {
-        return array_map(function ($item) {
-            return preg_replace('/[{|}]/', '', $item);
-        }, $this->signatureSegments());
+        return array_map(
+            function ($item) {
+                return preg_replace('/[{|}]/', '', $item);
+            }, $this->signatureSegments()
+        );
     }
 
     /**
@@ -54,9 +60,13 @@ trait HasSignature
      */
     public function signatureArguments(): array
     {
-        return array_values(array_filter($this->signatureSegmentsWithoutHooks(), function ($item) {
-            return substr($item, 0, 1) !== '-';
-        }));
+        return array_values(
+            array_filter(
+                $this->signatureSegmentsWithoutHooks(), function ($item) {
+                    return substr($item, 0, 1) !== '-';
+                }
+            )
+        );
     }
 
 
@@ -67,8 +77,12 @@ trait HasSignature
      */
     public function signatureOptions(): array
     {
-        return array_values(array_filter($this->signatureSegmentsWithoutHooks(), function ($item) {
-            return substr($item, 0, 1) == '-';
-        }));
+        return array_values(
+            array_filter(
+                $this->signatureSegmentsWithoutHooks(), function ($item) {
+                    return substr($item, 0, 1) == '-';
+                }
+            )
+        );
     }
 }

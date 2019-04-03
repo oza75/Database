@@ -9,7 +9,8 @@ use OZA\Database\Query\TableNameResolver as Resolver;
 
 /**
  * Class TableNameResolver
- * @method static string get(Entity $entity)
+ *
+ * @method  static string get(Entity $entity)
  * @package OZA\Database\Facade
  */
 class TableNameResolver extends BaseFacade

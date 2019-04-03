@@ -15,8 +15,8 @@ namespace OZA\Database\Query\Traits;
 trait EntityFacade
 {
     /**
-     * @param $name
-     * @param $arguments
+     * @param  $name
+     * @param  $arguments
      * @return mixed
      */
     public static function __callStatic($name, $arguments)
@@ -26,8 +26,8 @@ trait EntityFacade
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param  $name
+     * @param  $arguments
      * @return mixed
      */
     public function __call($name, $arguments)

@@ -75,18 +75,18 @@ class Config
     {
         if (is_dir($filename)) {
             $this->files = array_merge($this->getFiles(), glob($filename . '**/*.php'));
-        } else $this->files[] = $filename;
+        } else { $this->files[] = $filename;
+        }
     }
 
     /**
      * Load configurations
-     *
      */
     protected function load()
     {
         foreach ($this->getFiles() as $file) {
             $name = basename($file, '.php');
-            $this->configs[$name] = require $file;
+            $this->configs[$name] = include $file;
         }
     }
 
@@ -103,7 +103,7 @@ class Config
     /**
      * Get configuration data
      *
-     * @param string $key
+     * @param  string $key
      * @return null|array|mixed
      */
     public function getConfigs(string $key)

@@ -8,6 +8,7 @@ class Event
 {
     /**
      * List
+     *
      * @var array
      */
     protected $listeners = [];

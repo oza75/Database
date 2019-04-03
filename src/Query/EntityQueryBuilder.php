@@ -9,7 +9,8 @@ use OZA\Database\Facade\Query;
 
 /**
  * Class EntityQueryBuilder
- * @method QueryBuilder where($column, $operator = null, $value = null)
+ *
+ * @method  QueryBuilder where($column, $operator = null, $value = null)
  * @package OZA\Database\Query
  */
 class EntityQueryBuilder
@@ -22,6 +23,7 @@ class EntityQueryBuilder
 
     /**
      * EntityQueryBuilder constructor.
+     *
      * @param Entity $entity
      */
     public function __construct(Entity $entity)
@@ -59,7 +61,6 @@ class EntityQueryBuilder
 
     /**
      * Set QueryBuilder
-     *
      */
     public function setQuery()
     {
@@ -71,8 +72,8 @@ class EntityQueryBuilder
     /**
      * Find by id
      *
-     * @param $id
-     * @param string|null $column
+     * @param  $id
+     * @param  string|null $column
      * @return Entity|mixed
      */
     public function find($id, ?string $column = null)
@@ -106,7 +107,7 @@ class EntityQueryBuilder
     /**
      * Create and return values
      *
-     * @param array $attributes
+     * @param  array $attributes
      * @return bool|Entity
      * @throws Exception
      */
@@ -157,13 +158,13 @@ class EntityQueryBuilder
         return $this->getQuery()->toSql();
     }
 
-//    public function eagerLoad(array $relations)
-//    {
-//        $relations = array_map(function ($relation) {
-//
-//        });
-//        return $this->getQuery()->eagerLoad($relations);
-//    }
+    //    public function eagerLoad(array $relations)
+    //    {
+    //        $relations = array_map(function ($relation) {
+    //
+    //        });
+    //        return $this->getQuery()->eagerLoad($relations);
+    //    }
 
     /**
      * Get Query Parameters
@@ -178,8 +179,8 @@ class EntityQueryBuilder
     /**
      * Forwards not defined method call to QueryBuilder
      *
-     * @param $name
-     * @param $arguments
+     * @param  $name
+     * @param  $arguments
      * @return mixed
      */
     public function __call($name, $arguments)

@@ -11,7 +11,7 @@ interface MigrationTableInterface
     /**
      * Create table
      *
-     * @param Schema $schema
+     * @param  Schema $schema
      * @return mixed
      */
     public function up(Schema $schema): void;
@@ -19,7 +19,7 @@ interface MigrationTableInterface
     /**
      * Called when rollback
      *
-     * @param Schema $schema
+     * @param  Schema $schema
      * @return mixed
      */
     public function down(Schema $schema): void;

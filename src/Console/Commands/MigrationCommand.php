@@ -29,11 +29,13 @@ class MigrationCommand extends BaseCommand
     protected function create()
     {
         $stub = $this->getStub();
-        $data = $this->replaceVariables($stub,
+        $data = $this->replaceVariables(
+            $stub,
             [
                 'tableNameFormatted' => $this->getClassName(),
                 'tableName' => $this->getTableName()
-            ]);
+            ]
+        );
         $filename = $this->getFilename();
 
         $this->createFile($filename, $data);
@@ -43,7 +45,7 @@ class MigrationCommand extends BaseCommand
     /**
      * Get stub content
      *
-     * @param string|null $type
+     * @param  string|null $type
      * @return false|string
      */
     protected function getStub(?string $type = 'create')
@@ -75,7 +77,8 @@ class MigrationCommand extends BaseCommand
     protected function getTableName()
     {
         $table = $this->option('table');
-        if (!$table) throw new Exception('You must defined the name of table (e.g: --table=users)');
+        if (!$table) { throw new Exception('You must defined the name of table (e.g: --table=users)');
+        }
 
         return Str::sanitize($table);
     }
@@ -97,8 +100,8 @@ class MigrationCommand extends BaseCommand
     /**
      * Create file
      *
-     * @param string $filename
-     * @param $data
+     * @param  string $filename
+     * @param  $data
      * @return bool|int
      */
     protected function createFile(string $filename, $data)

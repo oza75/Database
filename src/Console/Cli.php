@@ -27,6 +27,7 @@ class Cli
 
     /**
      * Cli constructor.
+     *
      * @param $argv
      * @param $argc
      */
@@ -40,10 +41,12 @@ class Cli
     public function process()
     {
         $action = $this->getAction();
-        if (!$action) die('no action is set');
+        if (!$action) { die('no action is set');
+        }
 
         $command = $this->getCommand($action);
-        if (!$command) $this->noCommandFounded();
+        if (!$command) { $this->noCommandFounded();
+        }
 
         $this->run($command);
     }
@@ -55,9 +58,11 @@ class Cli
      */
     protected function arguments(): array
     {
-        return array_filter(array_slice($this->argv, 2), function ($item) {
-            return substr($item, 0, 1) !== '-';
-        });
+        return array_filter(
+            array_slice($this->argv, 2), function ($item) {
+                return substr($item, 0, 1) !== '-';
+            }
+        );
     }
 
     /**
@@ -75,14 +80,15 @@ class Cli
     /**
      * Get Command that has a given signature
      *
-     * @param string $string
+     * @param  string $string
      * @return mixed|null
      */
     protected function getCommand(string $string)
     {
         foreach ($this->commands as $command) {
             $signature = (new $command)->{'firstSegment'}();
-            if ($signature === $string) return $command;
+            if ($signature === $string) { return $command;
+            }
         }
 
         return null;
@@ -90,7 +96,6 @@ class Cli
 
     /**
      * If no command is found
-     *
      */
     protected function noCommandFounded()
     {
@@ -100,7 +105,7 @@ class Cli
     /**
      * Run command
      *
-     * @param string $command
+     * @param string      $command
      * @param string|null $method
      */
     protected function run(string $command, ?string $method = 'handle')

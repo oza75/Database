@@ -32,6 +32,7 @@ class ManyToOne
 
     /**
      * ManyToOne constructor.
+     *
      * @param string $related
      * @param string $column
      * @param $value
@@ -106,7 +107,7 @@ class ManyToOne
     /**
      * Get a specific row with its id
      *
-     * @param int $id
+     * @param  int $id
      * @return mixed
      */
     public function find($id)
@@ -117,9 +118,9 @@ class ManyToOne
     /**
      * Add where clause to query
      *
-     * @param $column
-     * @param $operator
-     * @param $value
+     * @param  $column
+     * @param  $operator
+     * @param  $value
      * @return ManyToOne
      */
     public function where($column, $operator, $value)
@@ -132,9 +133,9 @@ class ManyToOne
     /**
      * Add or where clause to query
      *
-     * @param $column
-     * @param $operator
-     * @param $value
+     * @param  $column
+     * @param  $operator
+     * @param  $value
      * @return ManyToOne
      */
     public function orWhere($column, $operator, $value)
@@ -157,7 +158,7 @@ class ManyToOne
     /**
      * Limit query
      *
-     * @param int $limit
+     * @param  int $limit
      * @return $this
      */
     public function limit(int $limit)
@@ -170,7 +171,7 @@ class ManyToOne
     /**
      * Create related data
      *
-     * @param array $attributes
+     * @param  array $attributes
      * @return bool|Entity
      * @throws Exception
      */
@@ -186,8 +187,8 @@ class ManyToOne
     /**
      * Add WhereIn Clause
      *
-     * @param string $column
-     * @param array $data
+     * @param  string $column
+     * @param  array  $data
      * @return $this
      */
     public function whereIn(string $column, array $data)
@@ -200,8 +201,8 @@ class ManyToOne
     /**
      * Add or WhereIn clause
      *
-     * @param string $column
-     * @param array $data
+     * @param  string $column
+     * @param  array  $data
      * @return ManyToOne
      */
     public function orWhereIn(string $column, array $data)
@@ -214,8 +215,8 @@ class ManyToOne
     /**
      * Call entity methods
      *
-     * @param $name
-     * @param $arguments
+     * @param  $name
+     * @param  $arguments
      * @return mixed
      */
     public function __call($name, $arguments)

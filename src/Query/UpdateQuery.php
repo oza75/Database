@@ -12,8 +12,8 @@ class UpdateQuery
     private $attributes;
 
     /**
-     *
      * UpdateQuery constructor.
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes)
@@ -42,9 +42,13 @@ class UpdateQuery
      */
     protected function compile()
     {
-        return join(", ", array_map(function ($item) {
-            return "$item = ?";
-        }, array_keys($this->attributes)));
+        return join(
+            ", ", array_map(
+                function ($item) {
+                    return "$item = ?";
+                }, array_keys($this->attributes)
+            )
+        );
     }
 
     public function getParams()

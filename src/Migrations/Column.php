@@ -30,8 +30,9 @@ class Column
 
     /**
      * Column constructor.
+     *
      * @param string $name
-     * @param Table $table
+     * @param Table  $table
      */
     public function __construct(string $name, Table $table)
     {
@@ -59,8 +60,8 @@ class Column
     }
 
     /**
-     * @param string $type
-     * @param null $length
+     * @param  string $type
+     * @param  null   $length
      * @return $this
      */
     public function type(string $type, $length = null)

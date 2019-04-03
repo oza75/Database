@@ -7,8 +7,8 @@ namespace OZA\Database\Facade;
 abstract class BaseFacade
 {
     /**
-     * @param $name
-     * @param $arguments
+     * @param  $name
+     * @param  $arguments
      * @return mixed
      */
     public static function __callStatic($name, $arguments)

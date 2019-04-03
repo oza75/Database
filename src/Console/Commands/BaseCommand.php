@@ -36,7 +36,6 @@ class BaseCommand
     /**
      * handle a command
      * Put your main code in this method
-     *
      */
     public function handle()
     {

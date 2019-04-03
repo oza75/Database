@@ -10,7 +10,8 @@ use PDOStatement;
 
 /**
  * Trait HasFetch
- * @method PDO pdo()
+ *
+ * @method  PDO pdo()
  * @package OZA\Database\Query\Traits
  */
 trait HasFetch
@@ -31,7 +32,7 @@ trait HasFetch
     }
 
     /**
-     * @param Entity[]|Entity $result
+     * @param  Entity[]|Entity $result
      * @return mixed
      */
     protected function processSync($result)
@@ -55,7 +56,7 @@ trait HasFetch
     /**
      * Get pdo statement
      *
-     * @param null $sql
+     * @param  null $sql
      * @return bool|PDOStatement
      */
     protected function execute($sql = null)
@@ -77,8 +78,8 @@ trait HasFetch
     /**
      * Find item by id
      *
-     * @param string $column
-     * @param $id
+     * @param  string $column
+     * @param  $id
      * @return mixed
      */
     public function find($id, ?string $column = 'id')
@@ -101,7 +102,7 @@ trait HasFetch
     }
 
     /**
-     * @param int $limit
+     * @param  int $limit
      * @return $this
      */
     public function limit(int $limit)

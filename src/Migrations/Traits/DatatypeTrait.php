@@ -16,7 +16,7 @@ trait DatatypeTrait
     /**
      * Varchar Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function string(string $name)
@@ -28,7 +28,7 @@ trait DatatypeTrait
     /**
      * Integer column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function integer(string $name): Column
@@ -39,7 +39,7 @@ trait DatatypeTrait
     /**
      * Big Integer Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function bigInteger(string $name): Column
@@ -50,7 +50,7 @@ trait DatatypeTrait
     /**
      * Tiny Integer Column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function tinyInteger(string $name): Column
@@ -59,9 +59,9 @@ trait DatatypeTrait
     }
 
     /**
-     * @param string $name
-     * @param int|null $max
-     * @param int|null $scale
+     * @param  string   $name
+     * @param  int|null $max
+     * @param  int|null $scale
      * @return Column
      */
     public function float(string $name, ?int $max = 20, ?int $scale = 2): Column
@@ -72,9 +72,9 @@ trait DatatypeTrait
     /**
      * Create double column
      *
-     * @param string $name
-     * @param int|null $max
-     * @param int|null $scale
+     * @param  string   $name
+     * @param  int|null $max
+     * @param  int|null $scale
      * @return Column
      */
     public function double(string $name, ?int $max = 20, ?int $scale = 2): Column
@@ -85,9 +85,9 @@ trait DatatypeTrait
     /**
      * Create decimal column
      *
-     * @param string $name
-     * @param int|null $max
-     * @param int|null $scale
+     * @param  string   $name
+     * @param  int|null $max
+     * @param  int|null $scale
      * @return Column
      */
     public function decimal(string $name, ?int $max = 38, ?int $scale = 2): Column
@@ -99,8 +99,7 @@ trait DatatypeTrait
     /**
      * Create text column
      *
-     *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function text(string $name): Column
@@ -111,7 +110,7 @@ trait DatatypeTrait
     /**
      * Create Medium Text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function mediumText(string $name): Column
@@ -122,7 +121,7 @@ trait DatatypeTrait
     /**
      * Create blob column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function blob(string $name): Column
@@ -133,7 +132,7 @@ trait DatatypeTrait
     /**
      * Create long text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function longText(string $name): Column
@@ -145,7 +144,7 @@ trait DatatypeTrait
     /**
      * Create tiny text column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function tinyText(string $name): Column
@@ -157,15 +156,19 @@ trait DatatypeTrait
     /**
      * Create enum column
      *
-     * @param string $name
-     * @param array $possibilities
+     * @param  string $name
+     * @param  array  $possibilities
      * @return Column
      */
     public function enum(string $name, array $possibilities): Column
     {
-        $options = join(',', array_map(function ($item) {
-            return "'$item'";
-        }, $possibilities));
+        $options = join(
+            ',', array_map(
+                function ($item) {
+                    return "'$item'";
+                }, $possibilities
+            )
+        );
 
         return $this->addColumn($name, 'ENUM', $options);
     }
@@ -173,7 +176,7 @@ trait DatatypeTrait
     /**
      * Create date column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function date(string $name): Column
@@ -184,7 +187,7 @@ trait DatatypeTrait
     /**
      * Create datetime column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function datetime(string $name): Column
@@ -195,7 +198,7 @@ trait DatatypeTrait
     /**
      * Create timestamp column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function timestamp(string $name): Column
@@ -206,7 +209,7 @@ trait DatatypeTrait
     /**
      * Create time column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function time(string $name): Column
@@ -217,7 +220,7 @@ trait DatatypeTrait
     /**
      * Create year column
      *
-     * @param string $name
+     * @param  string $name
      * @return Column
      */
     public function year(string $name): Column

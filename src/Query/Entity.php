@@ -55,7 +55,7 @@ class Entity
     /**
      * Fill attributes
      *
-     * @param array $attributes
+     * @param  array $attributes
      * @return $this
      */
     public function fillAttributes(array $attributes = [])
@@ -69,7 +69,6 @@ class Entity
 
     /**
      * Boot Entity
-     *
      */
     public function boot()
     {
@@ -107,7 +106,6 @@ class Entity
 
     /**
      * Get Query Builder
-     *
      */
     public function getQuery()
     {
@@ -116,7 +114,7 @@ class Entity
 
     /**
      *
-     * @param $name
+     * @param  $name
      * @return mixed
      */
     public function __get($name)
@@ -127,8 +125,8 @@ class Entity
     /**
      * Set Attribute
      *
-     * @param $name
-     * @param $value
+     * @param  $name
+     * @param  $value
      * @return mixed
      */
     public function __set($name, $value)
@@ -139,7 +137,7 @@ class Entity
     /**
      * Get Attribute
      *
-     * @param $name
+     * @param  $name
      * @return mixed
      */
     public function getAttribute($name)
@@ -156,15 +154,15 @@ class Entity
     /**
      * Set Attribute
      *
-     * @param $name
-     * @param $value
+     * @param  $name
+     * @param  $value
      * @return mixed
      */
     public function setAttribute($name, $value)
     {
         $method_name = sprintf("set%sAttribute", ucfirst($name));
 
-//        $this->originals[$name] = $value;
+        //        $this->originals[$name] = $value;
 
         if (method_exists($this, $method_name)) {
             $value = $this->{$method_name}($value);
@@ -178,7 +176,7 @@ class Entity
     /**
      * Cast id to int type
      *
-     * @param $value
+     * @param  $value
      * @return int
      */
     public function setIdAttribute($value)
@@ -200,7 +198,7 @@ class Entity
     /**
      * Insert attributes to database
      *
-     * @param array|null $attributes
+     * @param  array|null $attributes
      * @return bool|Entity
      * @throws Exception
      */
@@ -243,10 +241,10 @@ class Entity
     public function clone(): Entity
     {
         return clone $this;
-//        $class = get_class($this);
-//        $entity = new $class($this->getAttributes());
-//        $entity->setOriginals($this->getOriginals());
-//        return $entity;
+        //        $class = get_class($this);
+        //        $entity = new $class($this->getAttributes());
+        //        $entity->setOriginals($this->getOriginals());
+        //        return $entity;
     }
 
     public function getEntity()
@@ -290,8 +288,9 @@ class Entity
         $changed = [];
 
         foreach ($this->attributes as $key => $value) {
-            if (!isset($this->originals[$key])) $changed[$key] = $value;
-            else if ($this->originals[$key] !== $value) $changed[$key] = $value;
+            if (!isset($this->originals[$key])) { $changed[$key] = $value;
+            } else if ($this->originals[$key] !== $value) { $changed[$key] = $value;
+            }
         }
 
         return $changed;

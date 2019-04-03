@@ -44,7 +44,7 @@ trait ColumnDefinition
     /**
      * Set default value for a column
      *
-     * @param $default
+     * @param  $default
      * @return $this
      */
     public function default($default)
@@ -68,7 +68,7 @@ trait ColumnDefinition
     /**
      * Index column
      *
-     * @param string|null $name
+     * @param  string|null $name
      * @return $this
      */
     public function index(?string $name = null)
@@ -106,7 +106,7 @@ trait ColumnDefinition
     /**
      * Add onUpdate expression
      *
-     * @param string $expression
+     * @param  string $expression
      * @return $this
      */
     public function onUpdate(string $expression)
@@ -122,7 +122,7 @@ trait ColumnDefinition
     {
         if (!in_array($this->type['type'], $this->integerTypes)) {
             return $this;
-//            throw new InvalidTypeForAutoIncrement('Only column that has type ' . join(' or ', $this->integerTypes) . ' can be autoIncremented');
+            //            throw new InvalidTypeForAutoIncrement('Only column that has type ' . join(' or ', $this->integerTypes) . ' can be autoIncremented');
         }
 
         $this->primary();

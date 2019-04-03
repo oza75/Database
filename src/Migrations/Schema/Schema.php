@@ -31,6 +31,7 @@ class Schema
 
     /**
      * Schema constructor.
+     *
      * @throws Exception
      */
     public function __construct()
@@ -41,26 +42,28 @@ class Schema
     /**
      * Set schema command
      *
-     * @param string $command
+     * @param  string $command
      * @throws Exception
      */
     protected function setCommand(string $command)
     {
-        if (!in_array(strtolower($command), $this->availableCommands))
+        if (!in_array(strtolower($command), $this->availableCommands)) {
             throw new Exception('Command not available');
+        }
 
         $this->command = $command;
     }
 
     /**
      *
-     * @param Table $table
+     * @param  Table $table
      * @return bool
      * @throws Exception
      */
     protected function execute(Table $table)
     {
-        if (is_null($this->command)) throw new Exception('Command is not already set');
+        if (is_null($this->command)) { throw new Exception('Command is not already set');
+        }
         return $table->setCommand($this->command)->exec();
     }
 
