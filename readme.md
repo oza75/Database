@@ -2,6 +2,10 @@
 - Fully Tested With Mysql Driver
 - Contributors Needed
 - Made without any dependency
+### Installation
+```bash
+composer require oza/database
+```
 #### Usage
 First create a config file with your database configuration in **Application root Folder (IMPORTANT)**
 - Example of config file
